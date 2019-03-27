@@ -1,2 +1,3 @@
 # caspertext-ios
-Floating label pattern components
+
+Floating label pattern components for iOS.
