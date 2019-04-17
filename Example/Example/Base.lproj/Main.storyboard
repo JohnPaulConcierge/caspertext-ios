@@ -1,24 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rDI-HL-IBh">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="9PL-rP-oRV">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController storyboardIdentifier="floating" id="rDI-HL-IBh" customClass="ViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="64g-4J-mks"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mts-sC-Pvr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tbO-xA-FUe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PAN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0hR-jY-rDL" customClass="CasperTextField" customModule="CasperText">
+                                <rect key="frame" x="40" y="357" width="334" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fxJ-H7-0ZR"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="40" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4Tk-zB-vPC" customClass="CasperTextView" customModule="CasperText">
+                                <rect key="frame" x="40" y="405" width="334" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="Ie2-Dd-1se"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Comment"/>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.43529411759999997" green="0.43921568630000002" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Mts-sC-Pvr" firstAttribute="top" secondItem="4Tk-zB-vPC" secondAttribute="bottom" constant="417" id="L6x-Gn-4RR"/>
+                            <constraint firstItem="4Tk-zB-vPC" firstAttribute="leading" secondItem="0hR-jY-rDL" secondAttribute="leading" id="Oyr-Z8-qim"/>
+                            <constraint firstItem="4Tk-zB-vPC" firstAttribute="trailing" secondItem="0hR-jY-rDL" secondAttribute="trailing" id="S9T-np-rZI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0hR-jY-rDL" secondAttribute="trailing" constant="20" id="SHp-00-TTH"/>
+                            <constraint firstItem="4Tk-zB-vPC" firstAttribute="top" secondItem="0hR-jY-rDL" secondAttribute="bottom" constant="8" id="n2x-gD-rHK"/>
+                            <constraint firstItem="0hR-jY-rDL" firstAttribute="leading" secondItem="tbO-xA-FUe" secondAttribute="leadingMargin" constant="20" id="qur-oX-HVc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Lmn-pn-oWn"/>
                     </view>
+                    <connections>
+                        <outletCollection property="fields" destination="0hR-jY-rDL" collectionClass="NSMutableArray" id="fCN-w0-enr"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6wc-yx-dsk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="865" y="131"/>
         </scene>
     </scenes>
 </document>
