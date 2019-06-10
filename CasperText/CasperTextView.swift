@@ -118,8 +118,6 @@ public class CasperTextView: UITextView {
 
     private func commonInit() {
 
-        floatingLabel.textColor = floatingLabelTextColor ?? placeholderColor
-
         autoresizesSubviews = false
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -135,6 +133,7 @@ public class CasperTextView: UITextView {
         floatingLabel.text = placeholder
         floatingLabel.font = floatingLabelFont ?? self.font?.withSize(12)
         floatingLabel.backgroundColor = backgroundColor
+        floatingLabel.textColor = floatingLabelTextColor ?? placeholderColor
         floatingLabel.sizeToFit()
 
         let plabel = UILabel()
