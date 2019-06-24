@@ -45,12 +45,19 @@ public class CasperTextView: UITextView {
     fileprivate weak var bottomBar: UIView!
 
     @IBInspectable
-    public dynamic var minHeight: CGFloat = 48
+    open dynamic var minHeight: CGFloat = 48
 
     @IBInspectable
-    public dynamic var floatingLabelFont: UIFont? {
+    open dynamic var floatingLabelFont: UIFont? {
         didSet {
             floatingLabel.font = floatingLabelFont ?? self.font?.withSize(12)
+        }
+    }
+
+    @IBInspectable
+    open dynamic var floatingLabelTextColor: UIColor? = nil {
+        didSet {
+            floatingLabel.textColor = floatingLabelTextColor ?? placeholderColor
         }
     }
 
@@ -65,6 +72,7 @@ public class CasperTextView: UITextView {
     public dynamic var placeholderColor: UIColor = .gray {
         didSet {
             placeholderLabel.textColor = placeholderColor
+            floatingLabel.textColor = floatingLabelTextColor ?? placeholderColor
         }
     }
 
@@ -125,6 +133,7 @@ public class CasperTextView: UITextView {
         floatingLabel.text = placeholder
         floatingLabel.font = floatingLabelFont ?? self.font?.withSize(12)
         floatingLabel.backgroundColor = backgroundColor
+        floatingLabel.textColor = floatingLabelTextColor ?? placeholderColor
         floatingLabel.sizeToFit()
 
         let plabel = UILabel()

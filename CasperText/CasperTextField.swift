@@ -12,8 +12,7 @@ open class CasperTextField: UITextField {
     @IBInspectable
     open dynamic var placeholderTextColor: UIColor = .gray {
         didSet {
-            floatingLabel?.textColor = isFirstResponder ?
-                tintColor : placeholderTextColor
+            resetFloatingLabel()
             resetPlaceholder()
         }
     }
@@ -53,18 +52,17 @@ open class CasperTextField: UITextField {
         }
     }
 
-    //TODO: move to floatingLabelFont even if it means we loose the IBInspectable
     @IBInspectable
-    public dynamic var floatingLabelFontName: String? = nil {
+    public dynamic var floatingLabelFont: UIFont? = nil {
         didSet {
-            resetFloatingLabelFont()
+            resetFloatingLabel()
         }
     }
 
     @IBInspectable
-    public dynamic var floatingLabelFontSize: CGFloat = 12 {
+    open dynamic var floatingLabelTextColor: UIColor? = nil {
         didSet {
-            resetFloatingLabelFont()
+            resetFloatingLabel()
         }
     }
 
@@ -123,7 +121,7 @@ open class CasperTextField: UITextField {
 
         floatingLabel.alpha = 0
         floatingLabel.text = placeholder
-        floatingLabel.font = self.font!.withSize(floatingLabelFontSize)
+        floatingLabel.font = floatingLabelFont ?? self.font?.withSize(12)
         floatingLabel.sizeToFit()
         resetPlaceholder()
 
@@ -142,12 +140,9 @@ open class CasperTextField: UITextField {
 
     // MARK: - Updating UI
 
-    private func resetFloatingLabelFont() {
-        if floatingLabelFontName == nil {
-            floatingLabel?.font = self.font!.withSize(floatingLabelFontSize)
-        } else {
-            floatingLabel?.font = UIFont(name: floatingLabelFontName!, size: floatingLabelFontSize)
-        }
+    private func resetFloatingLabel() {
+        floatingLabel?.font = floatingLabelFont
+        floatingLabel?.textColor = floatingLabelTextColor ?? placeholderTextColor
     }
 
     private func resetPlaceholder() {
