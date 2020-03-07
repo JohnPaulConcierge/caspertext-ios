@@ -78,9 +78,9 @@ open class CasperTextField: UITextField {
         }
     }
 
-    fileprivate weak var floatingLabel: UILabel!
+    fileprivate weak var floatingLabel: UILabel?
 
-    fileprivate weak var bottomBar: UIView!
+    fileprivate weak var bottomBar: UIView?
 
     open override var placeholder: String? {
         didSet {
@@ -90,7 +90,7 @@ open class CasperTextField: UITextField {
 
     open override var textAlignment: NSTextAlignment {
         didSet {
-            floatingLabel.textAlignment = textAlignment
+            floatingLabel?.textAlignment = textAlignment
         }
     }
 
@@ -119,17 +119,17 @@ open class CasperTextField: UITextField {
         addSubview(label)
         floatingLabel = label
 
-        floatingLabel.alpha = 0
-        floatingLabel.text = placeholder
-        floatingLabel.font = floatingLabelFont ?? self.font?.withSize(12)
-        floatingLabel.sizeToFit()
+        floatingLabel?.alpha = 0
+        floatingLabel?.text = placeholder
+        floatingLabel?.font = floatingLabelFont ?? self.font?.withSize(12)
+        floatingLabel?.sizeToFit()
         resetPlaceholder()
 
         let bar = UIView()
         addSubview(bar)
         self.bottomBar = bar
 
-        bottomBar.isUserInteractionEnabled = false
+        bottomBar?.isUserInteractionEnabled = false
         resetHighlight()
 
         NotificationCenter.default.addObserver(self,
@@ -160,15 +160,15 @@ open class CasperTextField: UITextField {
     }
 
     @objc func resetHighlight() {
-        floatingLabel.text = error ?? placeholder
-        floatingLabel.sizeToFit()
+        floatingLabel?.text = error ?? placeholder
+        floatingLabel?.sizeToFit()
 
         guard error == nil || errorHighlight == nil else {
-            floatingLabel.textColor = errorHighlight
+            floatingLabel?.textColor = errorHighlight
             bottomBar?.backgroundColor = errorHighlight
             return
         }
-        floatingLabel.textColor = (isFirstResponder || isSelected) ? (colorHighlight ?? tintColor) : placeholderTextColor
+        floatingLabel?.textColor = (isFirstResponder || isSelected) ? (colorHighlight ?? tintColor) : placeholderTextColor
         bottomBar?.backgroundColor = (isFirstResponder || isSelected) ? (bottomBarColorHighlight ?? colorHighlight ?? tintColor) : bottomBarColor
     }
 
@@ -210,6 +210,10 @@ open class CasperTextField: UITextField {
     open override func layoutSubviews() {
         super.layoutSubviews()
 
+        guard let floatingLabel = floatingLabel else {
+            return
+        }
+
         let textRect = super.textRect(forBounds: bounds)
         let ty = floatingLabel.transform.ty
         floatingLabel.transform.ty = 0
@@ -218,7 +222,7 @@ open class CasperTextField: UITextField {
                                      width: textRect.width,
                                      height: floatingLabel.bounds.height)
         floatingLabel.transform.ty = ty
-        bottomBar.frame = CGRect(x: textRect.minX,
+        bottomBar?.frame = CGRect(x: textRect.minX,
                                  y: textRect.maxY - 2,
                                  width: textRect.width,
                                  height: 2)
@@ -234,18 +238,18 @@ open class CasperTextField: UITextField {
         let duration: TimeInterval = 0.2
 
         if show {
-            floatingLabel.transform.ty = ty
-            floatingLabel.alpha = 0
+            floatingLabel?.transform.ty = ty
+            floatingLabel?.alpha = 0
             UIView.animate(withDuration: duration) {
-                self.floatingLabel.transform.ty = 0
-                self.floatingLabel.alpha = 1
+                self.floatingLabel?.transform.ty = 0
+                self.floatingLabel?.alpha = 1
             }
         } else {
-            floatingLabel.transform.ty = 0
-            floatingLabel.alpha = 1
+            floatingLabel?.transform.ty = 0
+            floatingLabel?.alpha = 1
             UIView.animate(withDuration: duration) {
-                self.floatingLabel.transform.ty = ty
-                self.floatingLabel.alpha = 0
+                self.floatingLabel?.transform.ty = ty
+                self.floatingLabel?.alpha = 0
             }
         }
     }
